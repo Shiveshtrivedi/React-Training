@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="signup_form.css" />
+  </head>
+  <body>
+    <div class="main_container">
+      <div class="navbar_container">
+        <span class="img">
+          <img src="img.webp" alt="logo" class="img1" />
+          <p class="logo_name">Recipes Seller</p>
+        </span>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <a href="index.html" class="anchor">Home</a>
+        <a href="#" class="anchor">About</a>
+        <a href="login_form.html" class="anchor">Login</a>
+        <input type="text" placeholder="search" class="search" />
+        <button class="btn">Search</button>
+      </div>
+
+      <form
+        class="container"
+        id="form_data"
+        method="get"
+        action="data_show.html"
+        target="_blank"
+      >
+        <input type="text" placeholder="Full Name" id="name" name="name" />
+        <input type="email" id="email" placeholder="Email" name="email" />
+        <input
+          type="number"
+          id="mobile"
+          placeholder="Mobile No."
+          name="mobile"
+        />
+        <div>
+          <label>Gender:</label>
+          <label for="male">
+            <input type="radio" id="male" name="gender" value="male" />
+            Male
+          </label>
+          <label for="female">
+            <input type="radio" id="female" name="gender" value="female" />
+            Female
+          </label>
+        </div>
+        <input type="password" id="password" placeholder="Password" />
+        <textarea id="bio" placeholder="Enter your bio here"></textarea>
+        <div>
+          <label for="role">Select Role</label>
+          <select name="role_name" id="role">
+            <option value="developer">Developer</option>
+            <option value="administrator">Administrator</option>
+            <option value="manager">Manager</option>
+            <option value="lead">Lead</option>
+          </select>
+        </div>
+        <button type="submit" class="form_button" id="btn">Submit</button>
+      </form>
+
+      <footer class="footer_section">
+        <div>
+          <span class="footer_span">itt</span>
+          <address class="address">Kanakpura Main Office Jaipur</address>
+        </div>
+        <div>
+          <a href="index.html" class="anchor_footer">Home</a>
+          <a href="#" class="anchor_footer">Contact</a>
+          <a href="about.htm" class="anchor_footer">About</a>
+        </div>
+      </footer>
+    </div>
+    <script src="signup_form.js"></script>
+  </body>
+</html>
