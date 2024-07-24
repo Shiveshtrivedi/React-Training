@@ -20,10 +20,16 @@ submitButton.addEventListener("click", function (e) {
   const role = document.querySelector("#role").value;
   const userId = formdata.length + 1; 
   const mobileNumberLimit = 10;
+  const mobileRegex=/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/.test(mobile);
 
   if (name === '' || mobile === '' || bio === '' || password === '' || genderValue === null) {
     alert("All fields are required");
-  } else if (mobile.length !== mobileNumberLimit) {
+  }
+  else if( !mobileRegex)
+  {
+    alert('please enter valid phone number');
+  }
+  else if (mobile.length !== mobileNumberLimit ) {
     alert(`Mobile number must be exactly ${mobileNumberLimit} digits long.`);
   } else {
     // Validate password
