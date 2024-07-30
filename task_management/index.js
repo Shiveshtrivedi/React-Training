@@ -47,12 +47,13 @@ const renderTasksBasedOnFilter = (filterType) => {
     default:
       tasksToDisplay = allTasks;
   }
-  if (!tasksToDisplay.length) {
+  if (tasksToDisplay.length === 0) {
     const noTasksMessage = document.createElement("div");
     noTasksMessage.textContent = "No tasks available";
     noTasksMessage.className = "noTasksMessage";
     taskContainer.appendChild(noTasksMessage);
   } else {
+    console.log("task availabel");
     tasksToDisplay.forEach((task) => {
       const taskElement = createTaskElement(task);
       taskContainer.appendChild(taskElement.element);
@@ -174,12 +175,10 @@ addTaskButton.addEventListener("click", () => {
       return;
     }
     let task = {
-      id: nextTaskId++,
       name: taskName,
       completed: false,
       favorite: false,
     };
-    allTasks.push(task);
     errorMessage.classList.add("hidden");
 
     sortTasksByName(true);
@@ -197,6 +196,7 @@ addTaskButton.addEventListener("click", () => {
     };
     fetchData(url, option)
       .then((data) => {
+        allTasks.push(task);
         console.log("Task added successfully:", data);
       })
       .catch((error) => console.error("Error adding task:", error));
@@ -216,6 +216,11 @@ const removeTask = (taskElement, task) => {
     .then(() => {
       taskElement.remove();
       allTasks = allTasks.filter((t) => t.id !== task.id);
+      if (allTasks.length === 0) {
+        renderTasksBasedOnFilter(currentFilterType);
+      } else {
+        renderTasksBasedOnFilter(currentFilterType);
+      }
     })
     .catch((error) => console.error("Error deleting task:", error));
 };
@@ -286,18 +291,14 @@ const getOption = {
   method: "GET",
   headers: { "content-type": "application/json" },
 };
-const displayNoTasksMessage = () => {
-  const createNoTask = document.createElement("div");
-  createNoTask.innerText = "No tasks available";
-  taskContainer.append(createNoTask);
-};
 
 const loadTask = () => {
   fetchData(url, getOption)
     .then((data) => {
       if (!data.length) {
+        allTasks = [];
+        renderTasksBasedOnFilter(currentFilterType);
         console.log("no task");
-        displayNoTasksMessage();
       } else {
         allTasks = data;
         sortTasksByName(true);
