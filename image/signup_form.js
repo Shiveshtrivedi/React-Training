@@ -18,21 +18,23 @@ submitButton.addEventListener("click", function (e) {
   const password = document.querySelector("#password").value;
   const bio = document.querySelector("#bio").value;
   const role = document.querySelector("#role").value;
-  const userId = formdata.length + 1; 
+  const userId = formdata.length + 1;
   const mobileNumberLimit = 10;
-  const mobileRegex=/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/.test(mobile);
+  const mobileRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/.test(mobile);
 
-  if (name === '' || mobile === '' || bio === '' || password === '' || genderValue === null) {
+  if (
+    name === "" ||
+    mobile === "" ||
+    bio === "" ||
+    password === "" ||
+    genderValue === null
+  ) {
     alert("All fields are required");
-  }
-  else if( !mobileRegex)
-  {
-    alert('please enter valid phone number');
-  }
-  else if (mobile.length !== mobileNumberLimit ) {
+  } else if (!mobileRegex) {
+    alert("please enter valid phone number");
+  } else if (mobile.length !== mobileNumberLimit) {
     alert(`Mobile number must be exactly ${mobileNumberLimit} digits long.`);
   } else {
-    // Validate password
     const upperCase = /[A-Z]/.test(password);
     const lowerCase = /[a-z]/.test(password);
     const digit = /\d/.test(password);
@@ -44,7 +46,14 @@ submitButton.addEventListener("click", function (e) {
       return emailRegex.test(email);
     }
 
-    if (upperCase && lowerCase && digit && specialChar && length && validateEmail(email)) {
+    if (
+      upperCase &&
+      lowerCase &&
+      digit &&
+      specialChar &&
+      length &&
+      validateEmail(email)
+    ) {
       formdata.push({
         id: userId,
         name,
@@ -53,22 +62,23 @@ submitButton.addEventListener("click", function (e) {
         genderValue,
         bio,
         role,
-        password
+        password,
       });
-      console.log("form data is ", formdata);
       localStorage.setItem("object", JSON.stringify(formdata));
       window.location.href = `data_show.html?id=${userId}`;
     } else {
       if (!validateEmail(email)) {
-        alert('Please enter a valid Gmail email address.');
+        alert("Please enter a valid Gmail email address.");
       } else {
-        alert('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+        alert(
+          "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+        );
       }
     }
   }
 });
 
-document.getElementById('hamburger').addEventListener('click', function() {
-  const navbar = document.querySelector('.navbar_container');
-  navbar.classList.toggle('active'); 
+document.querySelector(".hamburger").addEventListener("click", function () {
+  const navbar = document.querySelector(".navbar_container");
+  navbar.classList.toggle("active");
 });
