@@ -47,13 +47,12 @@ const renderTasksBasedOnFilter = (filterType) => {
     default:
       tasksToDisplay = allTasks;
   }
-  if (tasksToDisplay.length === 0) {
+  if (!tasksToDisplay.length) {
     const noTasksMessage = document.createElement("div");
     noTasksMessage.textContent = "No tasks available";
     noTasksMessage.className = "noTasksMessage";
     taskContainer.appendChild(noTasksMessage);
   } else {
-    console.log("task availabel");
     tasksToDisplay.forEach((task) => {
       const taskElement = createTaskElement(task);
       taskContainer.appendChild(taskElement.element);
@@ -106,7 +105,6 @@ const createTaskElement = (task) => {
 
     updateTask(task)
       .then(() => {
-        console.log("Task favorite status updated successfully");
         star.classList.toggle("yellow", task.favorite);
         star.classList.toggle("white", !task.favorite);
         star.innerHTML = task.favorite ? "&#9733;" : "&#9734;";
@@ -114,7 +112,6 @@ const createTaskElement = (task) => {
         renderTasksBasedOnFilter(currentFilterType);
       })
       .catch((error) => {
-        console.error("Error updating favorite status:", error);
         task.favorite = !task.favorite;
         star.classList.toggle("yellow", task.favorite);
         star.classList.toggle("white", !task.favorite);
@@ -197,9 +194,8 @@ addTaskButton.addEventListener("click", () => {
     fetchData(url, option)
       .then((data) => {
         allTasks.push(task);
-        console.log("Task added successfully:", data);
       })
-      .catch((error) => console.error("Error adding task:", error));
+      .catch((error) => handleError(error));
   } else {
     errorMessage.classList.remove("hidden");
   }
@@ -216,13 +212,13 @@ const removeTask = (taskElement, task) => {
     .then(() => {
       taskElement.remove();
       allTasks = allTasks.filter((t) => t.id !== task.id);
-      if (allTasks.length === 0) {
+      if (!allTasks.length) {
         renderTasksBasedOnFilter(currentFilterType);
       } else {
         renderTasksBasedOnFilter(currentFilterType);
       }
     })
-    .catch((error) => console.error("Error deleting task:", error));
+    .catch((error) => handleError(error));
 };
 
 const updateTask = (task) => {
@@ -239,10 +235,8 @@ const updateTask = (task) => {
       if (index !== -1) {
         allTasks[index] = updatedTask;
       }
-
-      console.log("Task updated successfully:", updatedTask);
     })
-    .catch((error) => console.error("Error updating task:", error));
+    .catch((error) => handleError(error));
 };
 
 let currentEditingTask = null;
@@ -278,7 +272,7 @@ saveEditButton.addEventListener("click", () => {
         editTaskPopupOverlay.style.display = "none";
       })
       .catch((error) => {
-        console.error("Error updating task:", error);
+        handleError(error);
       });
   }
 });
@@ -298,14 +292,13 @@ const loadTask = () => {
       if (!data.length) {
         allTasks = [];
         renderTasksBasedOnFilter(currentFilterType);
-        console.log("no task");
       } else {
         allTasks = data;
         sortTasksByName(true);
         renderTasksBasedOnFilter(currentFilterType);
       }
     })
-    .catch((error) => console.error("Error fetching tasks:", error));
+    .catch((error) => handleError(error));
 };
 
 const allTaskButton = document.querySelector(".allTask");
