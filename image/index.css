@@ -24,7 +24,7 @@
   background-color: #729762;
   border: 1px solid #729762;
 }
-.img {
+.image_container {
   height: 40px;
   width: 40px;
   margin: 10px 8px;
@@ -62,13 +62,13 @@
 .anchor:hover {
   color: #0c08f1;
 }
-.btn {
+.search_button {
   height: 24%;
   width: 7%;
   border-radius: 20%;
   border-color: #4caf50;
 }
-.btn:hover {
+.search_button:hover {
   background-color: #0c08f1;
 }
 
@@ -94,7 +94,7 @@
 .ingredient_ul {
   list-style-type: none;
 }
-.rb_img {
+.rightBox_image {
   height: 56%;
   width: 90%;
   border-radius: 6%;
@@ -106,12 +106,12 @@
   display: inline-block;
 }
 
-.rightBox:hover .rb_img {
+.rightBox:hover .rightBox_image {
   transform: scale(1.2);
   cursor: pointer;
 }
 
-.recipe_li {
+.recipe_list {
   list-style-type: none;
 }
 
@@ -191,7 +191,7 @@ field-value {
 
 .navbar_container a,
 .navbar_container .search,
-.navbar_container .btn {
+.navbar_container .search_button {
   display: inline-block;
 }
 
@@ -222,7 +222,7 @@ field-value {
 @media (max-width: 480px) {
   .navbar_container a,
   .navbar_container .search,
-  .navbar_container .btn {
+  .navbar_container .search_button {
     display: none;
   }
 
@@ -232,7 +232,7 @@ field-value {
   }
   .navbar_container.active a,
   .navbar_container.active .search,
-  .navbar_container.active .btn {
+  .navbar_container.active .search_button {
     display: block;
   }
   .navbar_container {
@@ -274,24 +274,24 @@ field-value {
   .rightBox {
     margin-top: 2px;
   }
-  .rb_img {
+  .rightBox_image {
     margin-bottom: 16px;
     height: 100px;
     width: 84px;
     border-radius: 20px;
     transition: all 0.6s linear 0s;
   }
-  .rightBox:hover .rb_img {
+  .rightBox:hover .rightBox_image {
     transform: scale(0.7);
     cursor: pointer;
   }
-  .btn {
+  .search_button {
     height: 21px;
     width: 55px;
     background-color: #fff;
     border-radius: 5px;
   }
-  .btn:hover {
+  .search_button:hover {
     background-color: #0c08f1;
   }
 
@@ -308,7 +308,7 @@ field-value {
 @media ((min-width: 481px) and (max-width: 768px)) {
   .navbar_container a,
   .navbar_container .search,
-  .navbar_container .btn {
+  .navbar_container .search_button {
     display: none;
   }
 
@@ -319,7 +319,7 @@ field-value {
 
   .navbar_container.active a,
   .navbar_container.active .search,
-  .navbar_container.active .btn {
+  .navbar_container.active .search_button {
     display: block;
   }
   .item {
@@ -336,24 +336,24 @@ field-value {
   .rightBox {
     margin-top: 20px;
   }
-  .rb_img {
+  .rightBox_image {
     margin-bottom: 16px;
     height: 131px;
     width: 138px;
     border-radius: 20px;
     transition: all 0.6s linear 0s;
   }
-  .rightBox:hover .rb_img {
+  .rightBox:hover .rightBox_image {
     transform: scale(0.7);
     cursor: pointer;
   }
-  .btn {
+  .search_button {
     height: 21px;
     width: 55px;
     background-color: #fff;
     border-radius: 5px;
   }
-  .btn:hover {
+  .search_button:hover {
     background-color: #0c08f1;
   }
 

@@ -14,8 +14,8 @@ submitButton.addEventListener("click", function (e) {
 
   let isLoggedIn = false;
 
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
+  for (let userIndex = 0; userIndex < users.length; userIndex++) {
+    const user = users[userIndex];
     if (user.email === emailValue && user.password === passwordValue) {
       isLoggedIn = true;
 

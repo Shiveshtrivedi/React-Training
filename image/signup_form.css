@@ -28,7 +28,7 @@ body {
   border: 1px solid #729762;
 }
 
-.img {
+.image_container {
   height: 40px;
   width: 40px;
   margin: 10px 8px;
@@ -68,14 +68,14 @@ body {
   color: #0c08f1;
 }
 
-.btn {
+.search_button {
   height: 24%;
   width: 7%;
   border-radius: 20%;
   border-color: #4caf50;
 }
 
-.btn:hover {
+.search_button:hover {
   background-color: #0c08f1;
 }
 
@@ -174,7 +174,7 @@ input[type="number"]::-webkit-outer-spin-button {
 @media (max-width: 480px) {
   .navbar_container a,
   .navbar_container .search,
-  .navbar_container .btn {
+  .navbar_container .search_button {
     display: none;
   }
 
@@ -184,7 +184,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
   .navbar_container.active a,
   .navbar_container.active .search,
-  .navbar_container.active .btn {
+  .navbar_container.active .search_button {
     display: block;
   }
   .navbar_container {
@@ -213,7 +213,7 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 25px;
   }
 
-  .btn {
+  .search_button {
     height: 28px;
     width: 57px;
     margin: 0 0 0 8px;
@@ -235,7 +235,7 @@ input[type="number"]::-webkit-outer-spin-button {
 @media ((min-width: 481px) and (max-width: 768px)) {
   .navbar_container a,
   .navbar_container .search,
-  .navbar_container .btn {
+  .navbar_container .search_button {
     display: none;
   }
 
@@ -246,7 +246,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
   .navbar_container.active a,
   .navbar_container.active .search,
-  .navbar_container.active .btn {
+  .navbar_container.active .search_button {
     display: block;
   }
 }
