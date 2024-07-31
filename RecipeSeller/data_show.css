@@ -1,3 +1,83 @@
+@media (max-width: 480px) {
+  .navbar_container a,
+  .navbar_container .search,
+  .navbar_container search_button {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    color: #f0f8ff;
+  }
+  .navbar_container.active a,
+  .navbar_container.active .search,
+  .navbar_container.active search_button {
+    display: block;
+  }
+  .navbar_container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 1%;
+  }
+
+  .logo_image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo_name {
+    font-size: 87%;
+    margin-left: 11%;
+  }
+
+  .hamburger {
+    font-size: 124%;
+  }
+
+  .search {
+    width: 72px;
+    height: 25px;
+  }
+
+  search_button {
+    height: 28px;
+    width: 57px;
+    margin: 0 0 0 8px;
+  }
+  #name,
+  #email,
+  #password,
+  #mobile {
+    width: 64%;
+  }
+  #bio {
+    width: 60%;
+  }
+  .form_button {
+    width: 24%;
+  }
+}
+
+@media ((min-width: 481px) and (max-width: 768px)) {
+  .navbar_container a,
+  .navbar_container .search,
+  .navbar_container search_button {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    color: #f0f8ff;
+  }
+
+  .navbar_container.active a,
+  .navbar_container.active .search,
+  .navbar_container.active search_button {
+    display: block;
+  }
+}
+
 body {
   width: 100%;
   overflow-x: hidden;
@@ -103,83 +183,4 @@ search_button:hover {
   flex-direction: column;
   gap: 6%;
   width: 3%;
-}
-@media (max-width: 480px) {
-  .navbar_container a,
-  .navbar_container .search,
-  .navbar_container search_button {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-    color: #f0f8ff;
-  }
-  .navbar_container.active a,
-  .navbar_container.active .search,
-  .navbar_container.active search_button {
-    display: block;
-  }
-  .navbar_container {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 1%;
-  }
-
-  .logo_image {
-    width: 30px;
-    height: 30px;
-  }
-
-  .logo_name {
-    font-size: 87%;
-    margin-left: 11%;
-  }
-
-  .hamburger {
-    font-size: 124%;
-  }
-
-  .search {
-    width: 72px;
-    height: 25px;
-  }
-
-  search_button {
-    height: 28px;
-    width: 57px;
-    margin: 0 0 0 8px;
-  }
-  #name,
-  #email,
-  #password,
-  #mobile {
-    width: 64%;
-  }
-  #bio {
-    width: 60%;
-  }
-  .form_button {
-    width: 24%;
-  }
-}
-
-@media ((min-width: 481px) and (max-width: 768px)) {
-  .navbar_container a,
-  .navbar_container .search,
-  .navbar_container search_button {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-    color: #f0f8ff;
-  }
-
-  .navbar_container.active a,
-  .navbar_container.active .search,
-  .navbar_container.active search_button {
-    display: block;
-  }
 }
