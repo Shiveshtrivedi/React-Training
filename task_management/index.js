@@ -13,7 +13,6 @@ const errorMessage = document.getElementById("errorMessage");
 const errorMessageEdit = document.getElementById("errorMessageinedit");
 
 let allTasks = [];
-let nextTaskId = 1;
 let currentFilterType = "all";
 
 addTask.addEventListener("click", () => {
@@ -34,19 +33,21 @@ const renderTasksBasedOnFilter = (filterType) => {
   taskContainer.appendChild(heading);
 
   let tasksToDisplay;
+
   switch (filterType) {
     case "completed":
-      tasksToDisplay = allTasks.filter((task) => task.completed);
+      tasksToDisplay = allTasks.filter((task) => task.isCompleted);
       break;
     case "incomplete":
-      tasksToDisplay = allTasks.filter((task) => !task.completed);
+      tasksToDisplay = allTasks.filter((task) => !task.isCompleted);
       break;
     case "favorite":
-      tasksToDisplay = allTasks.filter((task) => task.favorite);
+      tasksToDisplay = allTasks.filter((task) => task.isFavorite);
       break;
     default:
       tasksToDisplay = allTasks;
   }
+
   if (!tasksToDisplay.length) {
     const noTasksMessage = document.createElement("div");
     noTasksMessage.textContent = "No tasks available";
@@ -59,6 +60,7 @@ const renderTasksBasedOnFilter = (filterType) => {
     });
   }
 };
+
 const sortTasksByName = (ascending = true) => {
   allTasks.sort((a, b) => {
     const nameA = a.name.toLowerCase();
@@ -68,11 +70,6 @@ const sortTasksByName = (ascending = true) => {
     if (nameA > nameB) return ascending ? 1 : -1;
     return 0;
   });
-};
-
-const renderSortedTasks = (filterType) => {
-  sortTasksByName(true);
-  renderTasksBasedOnFilter(filterType);
 };
 
 const isDuplicateTaskName = (name) => {
@@ -88,34 +85,35 @@ const createTaskElement = (task) => {
 
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
-  checkBox.checked = task.completed;
+  checkBox.checked = task.isCompleted;
 
   const label = document.createElement("label");
   label.textContent = task.name;
   label.className = "textTask";
-  label.style.textDecoration = task.completed ? "line-through" : "none";
+  label.style.textDecoration = task.isCompleted ? "line-through" : "none";
 
   const star = document.createElement("span");
   star.classList.add("star");
-  star.classList.add(task.favorite ? "yellow" : "white");
-  star.innerHTML = task.favorite ? "&#9733;" : "&#9734;";
+  star.classList.add(task.isFavorite ? "yellow" : "white");
+  star.innerHTML = task.isFavorite ? "&#9733;" : "&#9734;";
 
   star.addEventListener("click", () => {
-    task.favorite = !task.favorite;
+    task.isFavorite = !task.isFavorite;
 
     updateTask(task)
       .then(() => {
-        star.classList.toggle("yellow", task.favorite);
-        star.classList.toggle("white", !task.favorite);
-        star.innerHTML = task.favorite ? "&#9733;" : "&#9734;";
+        star.classList.toggle("yellow", task.isFavorite);
+        star.classList.toggle("white", !task.isFavorite);
+        star.innerHTML = task.isFavorite ? "&#9733;" : "&#9734;";
 
         renderTasksBasedOnFilter(currentFilterType);
       })
       .catch((error) => {
-        task.favorite = !task.favorite;
-        star.classList.toggle("yellow", task.favorite);
-        star.classList.toggle("white", !task.favorite);
-        star.innerHTML = task.favorite ? "&#9733;" : "&#9734;";
+        task.isFavorite = !task.isFavorite;
+        star.classList.toggle("yellow", task.isFavorite);
+        star.classList.toggle("white", !task.isFavorite);
+        star.innerHTML = task.isFavorite ? "&#9733;" : "&#9734;";
+        return handleError(error);
       });
   });
 
@@ -123,7 +121,7 @@ const createTaskElement = (task) => {
 
   editButton.innerHTML = "&#128394;";
   editButton.className = "editButtonTask";
-  if (task.completed) {
+  if (task.isCompleted) {
     editButton.classList.add("disabled");
   } else {
     editButton.addEventListener("click", () => {
@@ -132,6 +130,7 @@ const createTaskElement = (task) => {
       editTaskPopupOverlay.style.display = "flex";
     });
   }
+
   const removeButton = document.createElement("span");
 
   removeButton.innerHTML = "&#10060";
@@ -139,6 +138,7 @@ const createTaskElement = (task) => {
   removeButton.addEventListener("click", () => {
     removeTask(taskElement, task);
   });
+
   const actionContainer = document.createElement("div");
   actionContainer.className = "actionContainer";
 
@@ -153,8 +153,8 @@ const createTaskElement = (task) => {
   taskElement.append(checkBox, label, actionContainer);
 
   checkBox.addEventListener("click", () => {
-    task.completed = checkBox.checked;
-    label.style.textDecoration = task.completed ? "line-through" : "none";
+    task.isCompleted = checkBox.checked;
+    label.style.textDecoration = task.isCompleted ? "line-through" : "none";
     updateTask(task);
     renderTasksBasedOnFilter(currentFilterType);
   });
@@ -165,24 +165,21 @@ const createTaskElement = (task) => {
 addTaskButton.addEventListener("click", () => {
   const taskInput = document.getElementById("taskInput");
   let taskName = taskInput.value.trim();
+
   if (taskName) {
     if (isDuplicateTaskName(taskName)) {
       errorMessage.textContent = "A task with this name already exists.";
       errorMessage.classList.remove("hidden");
       return;
     }
+
     let task = {
       name: taskName,
-      completed: false,
-      favorite: false,
+      isCompleted: false,
+      isFavorite: false,
     };
+
     errorMessage.classList.add("hidden");
-
-    sortTasksByName(true);
-    renderTasksBasedOnFilter(currentFilterType);
-
-    taskInput.value = "";
-    addTaskPopupOverlay.style.display = "none";
 
     const option = {
       method: "POST",
@@ -191,9 +188,16 @@ addTaskButton.addEventListener("click", () => {
       },
       body: JSON.stringify(task),
     };
+
     fetchData(url, option)
-      .then((data) => {
-        allTasks.push(task);
+      .then((createdTask) => {
+        allTasks.push(createdTask);
+
+        sortTasksByName(true);
+        renderTasksBasedOnFilter(currentFilterType);
+
+        taskInput.value = "";
+        addTaskPopupOverlay.style.display = "none";
       })
       .catch((error) => handleError(error));
   } else {
@@ -208,6 +212,7 @@ const removeTask = (taskElement, task) => {
       "Content-Type": "application/json",
     },
   };
+
   fetchData(`${url}/${task.id}`, deleteOption)
     .then(() => {
       taskElement.remove();

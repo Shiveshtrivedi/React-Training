@@ -7,17 +7,17 @@ body {
 
 header {
   display: flex;
+  height: 55px;
   justify-content: space-between;
-  border: 0.05rem solid #868282;
+  border: 1px solid #868282;
   background-color: #d8efd3;
-  height: 4rem;
 }
 
 .logoName {
-  padding-left: 0.5rem;
+  padding-left: 13px;
 }
 .addTaskSymbol {
-  padding-right: 1.5rem;
+  padding-right: 15px;
   cursor: pointer;
   color: #000000;
 }
@@ -33,16 +33,15 @@ main {
 .leftBox {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  height: 35rem;
-  width: 12rem;
-  padding: 1rem 0 0 0rem;
+  gap: 3px;
+  width: 142px;
+  padding: 10px 0 0 0;
   cursor: pointer;
-  border: 0.05rem solid #868282;
+  border: 1px solid #868282;
   background-color: #95d2b3;
 }
 .leftBoxDiv {
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 20px;
   color: #fefefe;
 }
 .leftBoxDiv:hover {
@@ -55,8 +54,8 @@ main {
 .rightBox {
   flex: 1;
   overflow-y: scroll;
-  height: 36rem;
-  border: 0.05rem solid #868282;
+  height: 500px;
+  border: 1px solid #868282;
   background-color: #f1f8e8;
 }
 .rightBox::-webkit-scrollbar {
@@ -72,25 +71,24 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
   display: none;
 }
 
 .popupContent {
   position: relative;
-  padding: 1rem;
-  width: 18rem;
+  padding: 3%;
+  width: 26%;
   background-color: #fefefe;
-  border-radius: 1rem;
-  box-shadow: 0 0.1rem 1rem #444343;
+  border-radius: 10px;
+  box-shadow: 0 1px 10px #4443;
 }
 
 .closeButton {
   color: #ee0b0b;
   position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  font-size: 2rem;
+  top: 8px;
+  right: 10px;
+  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -104,13 +102,13 @@ main {
   display: none;
 }
 #addTaskButton {
-  margin-top: 1rem;
+  margin-top: 5%;
   width: 40%;
-  padding: 0.7rem;
+  padding: 5%;
   background-color: #007bff;
   color: #fefefe;
   border: none;
-  border-radius: 0.4rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -118,8 +116,8 @@ main {
   background-color: #0056b3;
 }
 #taskInput {
-  height: 2rem;
-  width: 18rem;
+  height: 36px;
+  width: 100%;
 }
 
 .taskElement {
@@ -128,17 +126,17 @@ main {
   justify-content: space-between;
   margin: 1%;
   border-radius: 1%;
-  border: 0.01rem solid #000000;
-  padding: 0.5rem;
+  border: 1px solid #000000;
+  padding: 5px;
   background-color: #fefefe;
   box-sizing: border-box;
 }
 .removeButtonTask {
-  margin: 0.5rem 0.5rem 0 0;
+  margin: 5px 5px 0 0;
   cursor: pointer;
 }
 .editButtonTask {
-  margin: 0.5rem 0.5rem 0 0;
+  margin: 5px 5px 0 0;
   cursor: pointer;
   color: #1434e6;
 }
@@ -157,13 +155,13 @@ main {
 }
 
 .star {
-  font-size: 2rem;
+  font-size: 30px;
   cursor: pointer;
-  margin: -0.4rem 0 0 0;
+  margin: -4px 0 0 0;
 }
 .yellow {
   color: #eecc0b;
-  margin: -0.4rem 0 0 0;
+  margin: -4px 0 0 0;
 }
 .editPopupOverlay {
   position: fixed;
@@ -178,36 +176,36 @@ main {
 
 .editPopup {
   background: #fefefe;
-  padding: 1rem;
-  border-radius: 1.3rem;
-  box-shadow: 0 0.1rem 1rem #444343;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 10px #444343;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 13rem;
-  width: 15rem;
+  height: 190px;
+  width: 230px;
 }
 .editPopup input[type="text"] {
-  height: 2rem;
-  width: 13rem;
+  height: 20px;
+  width: 190px;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
 .buttonContainer button {
-  margin: 0 0.3rem;
-  padding: 0.8rem 0.2rem;
+  margin: 0 6px;
+  padding: 10px 4px;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #007bff;
   color: #fefefe;
   transition: background-color 0.3s;
-  width: 4rem;
+  width: 60px;
 }
 
 .buttonContainer button:hover {
@@ -220,7 +218,7 @@ main {
 .actionContainer {
   display: flex;
   flex-direction: row;
-  gap: 0.4rem;
+  gap: 4px;
 }
 
 .editButtonTask.disabled {
@@ -288,7 +286,7 @@ main {
     padding: 1% 0 0 0;
   }
   .leftBoxDiv {
-    padding: 0 0 0 1rem;
+    padding: 0 0 0 10px;
   }
   .rightBox {
     height: 100%;
@@ -297,6 +295,13 @@ main {
   .leftBoxDiv:hover {
     color: #2b15ec;
     background-color: #007bff;
+  }
+  .popupContent {
+    width: 60%;
+    height: 42%;
+  }
+  #taskInput {
+    width: 90%;
   }
 }
 @media ((min-width: 481px) and (max-width:768px)) {
@@ -317,7 +322,7 @@ main {
   }
   .actionContainer {
     display: flex;
-    gap: 0.4rem;
-    padding-top: 1rem;
+    flex-direction: column;
+    padding-top: 10px;
   }
 }
