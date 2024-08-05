@@ -1,0 +1,4 @@
+node_modules
+eslint.config.mjs
+.vscode
+file.txt
