@@ -77,7 +77,7 @@ main {
 .popupContent {
   position: relative;
   padding: 3%;
-  width: 33%;
+  width: 23%;
   background-color: #fefefe;
   border-radius: 10px;
   box-shadow: 0 1px 10px #4443;
@@ -117,7 +117,6 @@ main {
 }
 #taskInput {
   height: 36px;
-  width: 285px;
 }
 
 .taskElement {
@@ -185,7 +184,7 @@ main {
   height: 190px;
   width: 230px;
 }
-.editPopup input[type="text"] {
+.editPopup input[type='text'] {
   height: 20px;
   width: 190px;
 }
@@ -258,7 +257,7 @@ main {
     flex-direction: column;
     height: 100%;
   }
-  input[type="checkbox" i] {
+  input[type='checkbox' i] {
     padding: initial;
     border: initial;
     margin: 4% 2% 43% 0;
@@ -296,9 +295,20 @@ main {
     color: #2b15ec;
     background-color: #007bff;
   }
+  #taskInput {
+    width: 150px;
+    height: 28px;
+  }
+  #addTaskButton {
+    padding: 3%;
+  }
+  .popupContent {
+    width: 50%;
+    padding: 7%;
+  }
 }
 @media ((min-width: 481px) and (max-width:768px)) {
-  input[type="checkbox" i] {
+  input[type='checkbox' i] {
     padding: initial;
     border: initial;
     margin: 0 1% 3% 0;

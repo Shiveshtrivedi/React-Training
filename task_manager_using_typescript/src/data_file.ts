@@ -1,9 +1,7 @@
-import { InterfaceTask } from "./interfaces";
-
-let baseUrl: string = "https://66a0bb4b7053166bcabc8698.mockapi.io/Tasklist";
+const baseUrl: string = 'https://66a0bb4b7053166bcabc8698.mockapi.io/Tasklist';
 
 export const fetchData = <T>(
-  url: string = "",
+  url: string = '',
   option: RequestInit = {}
 ): Promise<T> => {
   const fullUrl = `${baseUrl}${url}`;
@@ -16,6 +14,10 @@ export const fetchData = <T>(
       return response.json();
     })
     .then((data: T) => {
+      if (typeof data !== 'object') {
+        throw new Error('Received data is not a valid object.');
+      }
+
       return data;
     })
     .catch((error: Error) => {
@@ -25,8 +27,8 @@ export const fetchData = <T>(
 
 export const handleError = (error: Error): string => {
   if (error instanceof Error) {
-    return "Error: " + error.message;
+    return 'Error: ' + error.message;
   } else {
-    return "An unknown error occured.";
+    return 'An unknown error occured.';
   }
 };

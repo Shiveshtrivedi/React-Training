@@ -11,8 +11,8 @@
     "moduleResolution": "node",
     "rootDir": "./src",
     "sourceMap": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
+    // "noEmit": true,
+    // "allowImportingTsExtensions": true,
     "paths": {
       "*": ["./src/*", "./*"]
     }
