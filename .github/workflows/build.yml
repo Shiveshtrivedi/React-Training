@@ -1,4 +1,5 @@
 name: Build React App
+
 on:
   push:
     branches:
@@ -6,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,15 +21,22 @@ jobs:
         with:
           node-version: "18.20.3"
 
-      - name: Check ESLint version
+      - name: Install dependencies
         run: |
           cd world_clock_ts
-          npx eslint --version
+          npm ci
 
       - name: Run ESLint
         run: |
           cd world_clock_ts
           npm run lint
 
+      - name: Build the app
+        run: |
+          cd world_clock_ts
+          npm run build
+
       - name: Run tests
-        run: npm test
+        run: |
+          cd world_clock_ts
+          npm test
