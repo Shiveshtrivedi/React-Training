@@ -41,5 +41,5 @@ jobs:
           cd world_clock_ts
           npm run lint
 
-      - name: Run Husky install
-        run: npm run prepare
+      - name: Install Husky
+        run: npx husky install
