@@ -21,7 +21,9 @@ jobs:
           node-version: "18.20.3"
 
       - name: Run ESLint
-        run: npm run lint
+        run: |
+            cd world_clock_ts
+            npm run lint
 
       - name: Run tests
         run: npm test
