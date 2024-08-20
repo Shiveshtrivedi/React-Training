@@ -1,0 +1,17 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #777171;
+  border: 1px solid #000000;
+  color: #fefefe;
+  height: 58px;
+  margin: 0;
+  padding: 12px;
+}
+.unorderedListForHeaderLink {
+  list-style-type: none;
+}
+.linksInHeader {
+    text-decoration: none;
+}
