@@ -26,15 +26,20 @@ jobs:
           cd world_clock_ts
           npm ci
 
-      - name: Run ESLint
-        run: |
-          cd world_clock_ts
-          npm run lint
-
       - name: Build the app
         run: |
           cd world_clock_ts
           npm run build
+
+      - name: Format code with Prettier
+        run: |
+          cd world_clock_ts
+          npm run format
+
+      - name: Run ESLint
+        run: |
+          cd world_clock_ts
+          npm run lint
 
       - name: Run tests
         run: |
