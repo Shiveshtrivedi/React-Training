@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd world_clock_ts
-          npm ci
+          npm i
 
       - name: Build the app
         run: |

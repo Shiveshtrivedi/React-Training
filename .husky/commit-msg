@@ -1,2 +1,19 @@
 #!/usr/bin/env sh
 . "$(dirname "$0")/h"
+
+# Check commit message
+node check-commit-message.js "$1"
+
+const fs = require('fs');
+const path = require('path');
+
+#  Get the commit message from the file passed as an argument
+const commitMessageFile = process.argv[2];
+const commitMessage = fs.readFileSync(commitMessageFile, 'utf8').trim();
+
+# Check if the commit message is lowercase
+if (commitMessage !== commitMessage.toLowerCase()) {
+    console.error('Error: Commit message must be in lowercase.');
+    process.exit(1); 
+    #  Exit with a failure code
+}
