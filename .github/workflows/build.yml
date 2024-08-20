@@ -1,5 +1,4 @@
 name: Build React App
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     branches:
@@ -20,10 +19,15 @@ jobs:
         with:
           node-version: "18.20.3"
 
+      - name: Check ESLint version
+        run: |
+          cd world_clock_ts
+          npx eslint --version
+
       - name: Run ESLint
         run: |
-            cd world_clock_ts
-            npm run lint
+          cd world_clock_ts
+          npm run lint
 
       - name: Run tests
         run: npm test
