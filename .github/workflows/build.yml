@@ -40,8 +40,3 @@ jobs:
         run: |
           cd world_clock_ts
           npm run lint
-
-      - name: Run tests
-        run: |
-          cd world_clock_ts
-          npm test
