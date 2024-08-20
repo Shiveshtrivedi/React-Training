@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "typescript": "^4.9.5",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "husky": "^9.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint world_clock_ts/src/**/*.{js,ts,tsx}",
+    "lint:fix": "eslint --fix world_clock_ts/src/**/*.{js,ts,tsx}",
+    "format": "prettier --write world_clock_ts/src/**/*.{js,ts,tsx}",
+    "prepare": "husky install"
+  }
+}

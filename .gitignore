@@ -1,6 +1,8 @@
-node_modules
+/node_modules
 .vscode
-task_management
-task_manager_using_typescript
-recipe_seller1
-file.txt
+task_management/node_modules
+task_management/package-lock.json
+task_manager_using_typescript/node_modules
+task_manager_using_typescript/package-lock.json
+recipe_seller1/node_modules
+recipe_seller1/package-lock.json
