@@ -20,6 +20,15 @@ jobs:
         with:
           node-version: "18.20.3"
 
+      - name: Install dependencies
+        run: |
+          cd task_manager_using_typescript
+          npm i
+      - name: Build the app
+        run: |
+            cd task_manager_using_typescript
+            npm run build
+
       - name: Format code with Prettier
         run: |
           cd task_manager_using_typescript
