@@ -3,19 +3,10 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useCallback, useState, useEffect, useMemo } from 'react';
 import './DigitalClock.css';
+import { IClockProps,IFormattedTime } from '../Utils/Interface/Interface';
 
-interface DigitalClockProps {
-  timeZone: string;
-}
 
-interface FormattedTime {
-  dateValue: string;
-  timeValue: string;
-  hourResult: string;
-  meridian?: string;
-}
-
-const DigitalClock: React.FC<DigitalClockProps> = ({ timeZone }) => {
+const DigitalClock: React.FC<IClockProps> = ({ timeZone }) => {
   const [date, setDate] = useState<Date>(new Date());
   const [format, setFormat] = useState<'12hr' | '24hr'>('12hr');
 
@@ -50,7 +41,7 @@ const DigitalClock: React.FC<DigitalClockProps> = ({ timeZone }) => {
     return `${day}/${month}/${year}`;
   };
 
-  const getFormattedTime = useCallback((): FormattedTime => {
+  const getFormattedTime = useCallback((): IFormattedTime => {
     const formatter = new Intl.DateTimeFormat('en-US', getOptions());
     const formattedTime = formatter.format(date);
 

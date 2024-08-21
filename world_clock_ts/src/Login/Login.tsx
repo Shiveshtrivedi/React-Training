@@ -3,29 +3,19 @@
 import { useEffect, useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { IPerson, ILoginProps } from '../Utils/Interface/Interface';
 
-interface Person {
-  id: number;
-  name: string;
-  username: string;
-  password: string;
-}
-
-interface LoginProps {
-  signIn: () => void; 
-}
-
-const Login: React.FC<LoginProps> = ({ signIn }) => {
+const Login: React.FC<ILoginProps> = ({ signIn }) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
-  const [userData, setUserData] = useState<Person[]>([]);
+  const [userData, setUserData] = useState<IPerson[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
-      const parsedData: Person[] = JSON.parse(storedData);
+      const parsedData: IPerson[] = JSON.parse(storedData);
       setUserData(parsedData);
     }
   }, []);
@@ -60,6 +50,7 @@ const Login: React.FC<LoginProps> = ({ signIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          aria-label="Username"
         />
       </div>
       <div className="passwordContainer">
@@ -70,11 +61,12 @@ const Login: React.FC<LoginProps> = ({ signIn }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          aria-label="Password"
         />
       </div>
       {error && <div className="error">{error}</div>}
       <div>
-        <button type="submit" id="loginButton">
+        <button type="submit" id="loginButton" aria-label="Submit">
           Submit
         </button>
       </div>

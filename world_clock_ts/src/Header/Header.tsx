@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IHeaderProps } from '../Utils/Interface/Interface';
 import './Header.css';
 
-interface HeaderProps {
-  isSignedIn: boolean;
-  signOut: () => void; 
-}
-
-const Header: React.FC<HeaderProps> = ({ isSignedIn, signOut }) => {
+const Header: React.FC<IHeaderProps> = ({ isSignedIn, signOut }) => {
   return (
     <nav className="headerContainer">
       <h1 className="header">World Clock</h1>

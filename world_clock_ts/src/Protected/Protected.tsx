@@ -1,22 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Navigate } from "react-router-dom";
-import  { ReactNode } from "react";
+import { Navigate } from 'react-router-dom';
+import { IProtectedProps } from '../Utils/Interface/Interface';
 
-interface ProtectedProps {
-  isSignedIn: boolean;
-  children: ReactNode;
-}
-
-const Protected = ({ isSignedIn, children }: ProtectedProps) => {
-  return (
-    <div>
-      {isSignedIn ? (
-        children
-      ) : (
-        <Navigate to="/login" />
-      )}
-    </div>
-  );
+const Protected = ({ isSignedIn, children }: IProtectedProps) => {
+  return <div>{isSignedIn ? children : <Navigate to="/login" />}</div>;
 };
 
 export default Protected;

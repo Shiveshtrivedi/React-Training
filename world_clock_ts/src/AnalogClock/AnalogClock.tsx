@@ -4,12 +4,9 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import './AnalogClock.css';
+import { IClockProps } from '../Utils/Interface/Interface';
 
-interface AnalogClockProps {
-  timeZone: string;
-}
-
-const AnalogClock: React.FC<AnalogClockProps> = ({ timeZone }) => {
+const AnalogClock: React.FC<IClockProps> = ({ timeZone }) => {
   const [date, setDate] = useState<Date>(new Date());
 
   const options = useCallback(
