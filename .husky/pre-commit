@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm --prefix task_manager_using_typescript run eslint
+
+
+npm run lint
+npm run format
