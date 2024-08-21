@@ -1,9 +1,9 @@
-export interface InterfaceAllTasks {
+export interface IAllTasks {
   name: string;
   isCompleted: boolean;
   isFavorite: boolean;
 }
 
-export interface InterfaceTask extends InterfaceAllTasks {
+export interface ITask extends IAllTasks {
   id: string;
 }

@@ -1,4 +1,4 @@
-import { InterfaceAllTasks, InterfaceTask } from '../src/interfaces';
+import { IAllTasks, ITask } from '../src/interfaces';
 import { fetchData, handleError } from './data_file.js';
 
 const addTask = document.querySelector('.addTaskSymbol') as HTMLDivElement;
@@ -29,7 +29,7 @@ const errorMessageEdit = document.getElementById(
   'errorMessageinedit'
 ) as HTMLDivElement;
 
-let allTasks: InterfaceTask[] = [];
+let allTasks: ITask[] = [];
 let currentFilterType: string = 'all';
 
 addTask.addEventListener('click', (): void => {
@@ -41,10 +41,10 @@ addTaskCloseButton.addEventListener('click', (): void => {
 });
 
 enum FilterTypeValue {
-  completed = 'completed',
-  incomplete = 'incomplete',
-  favorite = 'favorite',
-  All = 'all',
+  COMPLETED = 'completed',
+  INCOMPLETE = 'incomplete',
+  FAVORITE = 'favorite',
+  ALL = 'all',
 }
 const renderTasksBasedOnFilter = (filterType: string): void => {
   taskContainer.innerHTML = '';
@@ -55,16 +55,16 @@ const renderTasksBasedOnFilter = (filterType: string): void => {
     filterType.charAt(0).toUpperCase() + filterType.slice(1) + ' Tasks';
   taskContainer.appendChild(heading);
 
-  let tasksToDisplay: InterfaceTask[];
+  let tasksToDisplay: ITask[];
 
   switch (filterType) {
-    case FilterTypeValue.completed:
+    case FilterTypeValue.COMPLETED:
       tasksToDisplay = allTasks.filter((task) => task.isCompleted);
       break;
-    case FilterTypeValue.incomplete:
+    case FilterTypeValue.INCOMPLETE:
       tasksToDisplay = allTasks.filter((task) => !task.isCompleted);
       break;
-    case FilterTypeValue.favorite:
+    case FilterTypeValue.FAVORITE:
       tasksToDisplay = allTasks.filter((task) => task.isFavorite);
       break;
     default:
@@ -95,19 +95,19 @@ const sortTasksByName = (ascending: boolean = true): void => {
 
 const isDuplicateTaskName = (name: string): boolean => {
   return allTasks.some(
-    (task: InterfaceAllTasks) => task.name.toLowerCase() === name.toLowerCase()
+    (task: IAllTasks) => task.name.toLowerCase() === name.toLowerCase()
   );
 };
 enum DateFormat {
-  Long = 'long',
-  Short = 'short',
+  LONG = 'long',
+  SHORT = 'short',
 }
 
 const getDateOptions = (format: DateFormat): Intl.DateTimeFormatOptions => {
   switch (format) {
-    case DateFormat.Long:
+    case DateFormat.LONG:
       return { year: 'numeric', month: 'long', day: 'numeric' };
-    case DateFormat.Short:
+    case DateFormat.SHORT:
       return { year: 'numeric', month: '2-digit', day: '2-digit' };
     default:
       return { year: 'numeric', month: 'short', day: 'numeric' };
@@ -115,8 +115,8 @@ const getDateOptions = (format: DateFormat): Intl.DateTimeFormatOptions => {
 };
 
 const createTaskElement = (
-  task: InterfaceTask
-): { element: HTMLElement; task: InterfaceTask } => {
+  task: ITask
+): { element: HTMLElement; task: ITask } => {
   const taskElement: HTMLDivElement = document.createElement('div');
   taskElement.classList.add('taskElement');
   taskElement.setAttribute('data-id', task.id);
@@ -183,7 +183,7 @@ const createTaskElement = (
   const date: HTMLParagraphElement = document.createElement('p');
   date.className = 'date';
 
-  const dateFormat: DateFormat = DateFormat.Long;
+  const dateFormat: DateFormat = DateFormat.LONG;
   const options: Intl.DateTimeFormatOptions = getDateOptions(dateFormat);
   const now: Date = new Date();
   const dateString: string = now.toLocaleDateString(undefined, options);
@@ -213,7 +213,7 @@ addTaskButton.addEventListener('click', () => {
       return;
     }
 
-    const task: InterfaceAllTasks = {
+    const task: IAllTasks = {
       name: taskName,
       isCompleted: false,
       isFavorite: false,
@@ -230,8 +230,8 @@ addTaskButton.addEventListener('click', () => {
       body: JSON.stringify(task),
     };
 
-    fetchData<InterfaceTask>('', option)
-      .then((createdTask: InterfaceTask) => {
+    fetchData<ITask>('', option)
+      .then((createdTask: ITask) => {
         allTasks.push(createdTask);
 
         sortTasksByName(true);
@@ -246,7 +246,7 @@ addTaskButton.addEventListener('click', () => {
   }
 });
 
-const removeTask = (taskElement: HTMLElement, task: InterfaceTask): void => {
+const removeTask = (taskElement: HTMLElement, task: ITask): void => {
   const deleteOption: RequestInit = {
     method: 'DELETE',
     mode: 'cors',
@@ -268,7 +268,7 @@ const removeTask = (taskElement: HTMLElement, task: InterfaceTask): void => {
     .catch((error: Error) => handleError(error));
 };
 
-const updateTask = (task: InterfaceTask): Promise<void | string> => {
+const updateTask = (task: ITask): Promise<ITask | string> => {
   const updateOption: RequestInit = {
     method: 'PUT',
     mode: 'cors',
@@ -277,17 +277,18 @@ const updateTask = (task: InterfaceTask): Promise<void | string> => {
     },
     body: JSON.stringify(task),
   };
-  return fetchData<InterfaceTask>(`/${task.id}`, updateOption)
-    .then((updatedTask: InterfaceTask) => {
-      const index = allTasks.findIndex((t: InterfaceTask) => t.id === task.id);
+  return fetchData<ITask>(`/${task.id}`, updateOption)
+    .then((updatedTask: ITask) => {
+      const index = allTasks.findIndex((t: ITask) => t.id === task.id);
       if (index !== -1) {
         allTasks[index] = updatedTask;
       }
+      return updatedTask;
     })
     .catch((error: Error) => handleError(error));
 };
 
-let currentEditingTask: InterfaceTask | null = null;
+let currentEditingTask: ITask | null = null;
 saveEditButton.addEventListener('click', () => {
   if (currentEditingTask) {
     const newTaskName = editTaskInput.value.trim();
@@ -335,8 +336,8 @@ const getOption: RequestInit = {
 };
 
 const loadTask = (): void => {
-  fetchData<InterfaceTask[]>('', getOption)
-    .then((data: InterfaceTask[]) => {
+  fetchData<ITask[]>('', getOption)
+    .then((data: ITask[]) => {
       if (!data.length) {
         allTasks = [];
         renderTasksBasedOnFilter(currentFilterType);
@@ -351,7 +352,7 @@ const loadTask = (): void => {
 
 const allTaskButton = document.querySelector('.allTask') as HTMLDivElement;
 allTaskButton.addEventListener('click', () => {
-  currentFilterType = FilterTypeValue.All;
+  currentFilterType = FilterTypeValue.ALL;
   loadTask();
 });
 
@@ -359,7 +360,7 @@ const completeTaskButton = document.querySelector(
   '.completeTask'
 ) as HTMLDivElement;
 completeTaskButton.addEventListener('click', () => {
-  currentFilterType = FilterTypeValue.completed;
+  currentFilterType = FilterTypeValue.COMPLETED;
   renderTasksBasedOnFilter(currentFilterType);
 });
 
@@ -367,7 +368,7 @@ const incompleteTaskButton = document.querySelector(
   '.incompleteTask'
 ) as HTMLDivElement;
 incompleteTaskButton.addEventListener('click', () => {
-  currentFilterType = FilterTypeValue.incomplete;
+  currentFilterType = FilterTypeValue.INCOMPLETE;
   renderTasksBasedOnFilter(currentFilterType);
 });
 
@@ -375,7 +376,7 @@ const favoriteButton = document.querySelector(
   '.favoriteTask'
 ) as HTMLDivElement;
 favoriteButton.addEventListener('click', () => {
-  currentFilterType = FilterTypeValue.favorite;
+  currentFilterType = FilterTypeValue.FAVORITE;
   renderTasksBasedOnFilter(currentFilterType);
 });
 
