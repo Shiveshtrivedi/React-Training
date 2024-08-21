@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd task_manager_using_typescript
-          npm ci
+          npm i
 
       - name: Format code with Prettier
         run: |
