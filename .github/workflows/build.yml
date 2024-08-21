@@ -1,0 +1,52 @@
+name: Simple Task manger
+
+on:
+  push:
+    branches:
+      - typescript
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.20.3"
+
+      - name: Install dependencies
+        run: |
+          cd task_manager_using_typescript
+          npm i
+
+      - name: Build the app
+        run: |
+          cd task_manager_using_typescript
+          npm run build
+
+      - name: Format code with Prettier
+        run: |
+          cd task_manager_using_typescript
+          npm run format
+
+      - name: Run ESLint
+        run: |
+          cd task_manager_using_typescript
+          npm run lint
+
+      - name: Install Husky
+        run: npx husky install
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
