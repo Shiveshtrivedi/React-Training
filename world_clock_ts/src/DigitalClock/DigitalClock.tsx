@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, useMemo } from 'react';
 import './DigitalClock.css';
 
 interface DigitalClockProps {
@@ -77,8 +77,10 @@ const DigitalClock: React.FC<DigitalClockProps> = ({ timeZone }) => {
     setDate(new Date());
   }, [timeZone]);
 
-  const { hourResult, meridian, dateValue } = getFormattedTime();
-
+  const { hourResult, meridian, dateValue } = useMemo(
+    () => getFormattedTime(),
+    [date, getOptions, format]
+  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormat(e.target.value as '12hr' | '24hr');
   };

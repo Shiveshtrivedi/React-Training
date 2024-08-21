@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Person {
   id: number;
@@ -9,18 +11,24 @@ interface Person {
   password: string;
 }
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+interface LoginProps {
+  signIn: () => void; 
+}
+
+const Login: React.FC<LoginProps> = ({ signIn }) => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [userData, setUserData] = useState<Person[]>([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
     if (storedData) {
-      const parsedData = JSON.parse(storedData);
+      const parsedData: Person[] = JSON.parse(storedData);
       setUserData(parsedData);
     }
   }, []);
-  const [userData, setUserData] = useState<Person[]>([]);
 
   const handleLogin = () => {
     const user = userData.find(
@@ -29,11 +37,13 @@ const Login = () => {
 
     if (user) {
       setError('');
-      alert('Login successful!');
+      signIn();
+      navigate('/');
     } else {
       setError('*Invalid username or password');
     }
   };
+
   return (
     <form
       className="container"
@@ -45,10 +55,11 @@ const Login = () => {
       <div className="inputContainer">
         <label htmlFor="username">Username</label>
         <input
-          type="email"
+          type="text"
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
       </div>
       <div className="passwordContainer">
@@ -58,6 +69,7 @@ const Login = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </div>
       {error && <div className="error">{error}</div>}
