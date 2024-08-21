@@ -8,7 +8,6 @@
     "dev": "npm run build && node ./src/index.js",
     "eslint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "husky install",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "author": "",
