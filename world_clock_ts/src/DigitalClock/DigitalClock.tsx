@@ -3,8 +3,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useCallback, useState, useEffect, useMemo } from 'react';
 import './DigitalClock.css';
-import { IClockProps,IFormattedTime } from '../Utils/Interface/Interface';
-
+import { IClockProps, IFormattedTime } from '../Utils/Interface/Interface';
 
 const DigitalClock: React.FC<IClockProps> = ({ timeZone }) => {
   const [date, setDate] = useState<Date>(new Date());

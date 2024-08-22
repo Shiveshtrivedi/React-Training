@@ -38,9 +38,7 @@ const SignUp = () => {
     }
 
     if (!validatePassword(password)) {
-      setErrors(
-       message.passwordError
-      );
+      setErrors(message.passwordError);
       return;
     }
     const newUser: IPerson = {
@@ -66,7 +64,7 @@ const SignUp = () => {
             type="name"
             id="name"
             onChange={(e) => setName(e.target.value)}
-            aria-label='Name'
+            aria-label="Name"
           />
         </div>
         <div className="inputContainer">
@@ -75,7 +73,7 @@ const SignUp = () => {
             type="email"
             id="username"
             onChange={(e) => setUserName(e.target.value)}
-            aria-label='Username'
+            aria-label="Username"
           />
         </div>
         <div className="passwordContainer">
@@ -84,11 +82,11 @@ const SignUp = () => {
             type="password"
             id="password"
             onChange={(e) => setPassword(e.target.value)}
-            aria-label='Password'
+            aria-label="Password"
           />
         </div>
         <div>
-          <button type="submit" id="submitButton" aria-label='Submit'>
+          <button type="submit" id="submitButton" aria-label="Submit">
             Submit
           </button>
         </div>

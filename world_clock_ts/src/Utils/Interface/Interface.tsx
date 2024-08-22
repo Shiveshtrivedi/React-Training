@@ -1,36 +1,41 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 interface IClockProps {
   timeZone: string;
 }
 
 interface IFormattedTime {
-    dateValue: string;
-    timeValue: string;
-    hourResult: string;
-    meridian?: string;
-  }
+  dateValue: string;
+  timeValue: string;
+  hourResult: string;
+  meridian?: string;
+}
 
-  interface IHeaderProps {
-    isSignedIn: boolean;
-    signOut: () => void;
-  }
-  interface ILoginProps {
-    signIn: () => void;
-  }
-  
-  interface IPerson {
-    id: number;
-    name: string;
-    username: string;
-    password: string;
-  }
+interface IHeaderProps {
+  isSignedIn: boolean;
+  signOut: () => void;
+}
+interface ILoginProps {
+  signIn: () => void;
+}
 
-  interface IProtectedProps {
-    isSignedIn: boolean;
-    children: ReactNode;
-  }
-  
+interface IPerson {
+  id: number;
+  name: string;
+  username: string;
+  password: string;
+}
 
-  
-export type {IClockProps,IFormattedTime,IHeaderProps,ILoginProps,IPerson,IProtectedProps};
+interface IProtectedProps {
+  isSignedIn: boolean;
+  children: ReactNode;
+}
+
+export type {
+  IClockProps,
+  IFormattedTime,
+  IHeaderProps,
+  ILoginProps,
+  IPerson,
+  IProtectedProps,
+};

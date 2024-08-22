@@ -21,12 +21,12 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px;
   }
-  .dark {
+  .timezoneClock.dark {
     background-color: #706a6a;
     color: #ffffff;
     z-index: 1;
   }
-  .light {
+  .timezoneClock.light {
     background-color: #ffffff;
     color: #000;
     z-index: 1;

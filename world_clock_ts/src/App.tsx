@@ -20,7 +20,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <main>
+    <>
       <Header isSignedIn={isSignedIn} signOut={signOut} />
       <Routes>
         <Route
@@ -54,7 +54,7 @@ const App: React.FC = () => {
           </button>
         )}
       </div>
-    </main>
+    </>
   );
 };
 
