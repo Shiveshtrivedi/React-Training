@@ -10,8 +10,8 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "rootDir": "./src",
-    // "noEmit": true,
-    // "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "paths": {
       "*": ["./src/*", "./*"]
     }

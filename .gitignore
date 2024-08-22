@@ -2,5 +2,10 @@ node_modules
 recipe_seller1
 .vscode
 task_management
-task_manager_using_typescript
 world_clock_ts
+task_manager_using_typescript/utils/*.js
+task_manager_using_typescript/data_file.js
+task_manager_using_typescript/index.js
+task_manager_using_typescript/.cache
+task_manager_using_typescript/node_modules
+
