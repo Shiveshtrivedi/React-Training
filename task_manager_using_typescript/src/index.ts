@@ -31,7 +31,7 @@ const errorMessageEdit = document.getElementById(
 ) as HTMLDivElement;
 
 let allTasks: ITask[] = [];
-let currentFilterType: string = 'all';
+let currentFilterType: FilterTypeValue;
 
 addTask.addEventListener('click', (): void => {
   addTaskPopupOverlay.style.display = 'flex';
@@ -41,7 +41,7 @@ addTaskCloseButton.addEventListener('click', (): void => {
   addTaskPopupOverlay.style.display = 'none';
 });
 
-const renderTasksBasedOnFilter = (filterType: string): void => {
+const renderTasksBasedOnFilter = (filterType: FilterTypeValue): void => {
   taskContainer.innerHTML = '';
 
   const heading: HTMLHeadingElement = document.createElement('h4');
