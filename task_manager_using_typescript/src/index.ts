@@ -1,17 +1,6 @@
-import { IAllTasks, ITask } from './utils/interfaces.js';
+import { IAllTasks, ITask } from './utils/interfaces';
 import { fetchData, handleError } from './data_file.js';
-// import { FilterTypeValue, DateFormat } from './utils/enum.js';
-export enum FilterTypeValue {
-  COMPLETED = 'completed',
-  INCOMPLETE = 'incomplete',
-  FAVORITE = 'favorite',
-  ALL = 'all',
-}
-
-export enum DateFormat {
-  LONG = 'long',
-  SHORT = 'short',
-}
+import { FilterTypeValue, DateFormat } from './utils/enum.js';
 
 const addTask = document.querySelector('.addTaskSymbol') as HTMLDivElement;
 const addTaskPopupOverlay = document.querySelector(
