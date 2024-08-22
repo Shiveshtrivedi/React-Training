@@ -1,7 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-no-comment-textnodes */
 
-// import React from 'react';
 
 const About = () => {
   return (
@@ -21,6 +20,7 @@ const About = () => {
         intuitive display, making it easy to read and understand the time
         differences. Stay on time, no matter where you are in the world, with
         our comprehensive and easy-to-use world clock.
+        
       </p>
     </div>
   );

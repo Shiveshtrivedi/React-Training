@@ -14,7 +14,7 @@ const ThemeButton = () => {
   };
   return (
     <button onClick={onChangeBtn} className="themeButton">
-      {theme === 'light' ? <CiLight/> :<CiDark/> }
+      {theme === 'light' ? <CiLight /> : <CiDark     />}
     </button>
   );
 };

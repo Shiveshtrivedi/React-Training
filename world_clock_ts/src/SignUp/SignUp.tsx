@@ -53,7 +53,7 @@ const SignUp = () => {
     setName('');
     setUserName('');
     setPassword('');
-    navigate('/login');
+    navigate('/login',{replace:true});
   };
   return (
     <>

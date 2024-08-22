@@ -58,7 +58,7 @@ const Home = () => {
           <h3 className="timezoneHeading">{selectedTimeZone}</h3>
           <AnalogClock timeZone={timeZone} />
           <DigitalClock timeZone={timeZone} />
-        <ThemeButton />
+          <ThemeButton />
         </div>
       </div>
     </ThemeProvider>
