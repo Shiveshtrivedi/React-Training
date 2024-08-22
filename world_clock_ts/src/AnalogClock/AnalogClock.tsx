@@ -21,7 +21,6 @@ const AnalogClock: React.FC<IClockProps> = ({ timeZone }) => {
     return new Date(date.toLocaleString('en-US', { timeZone }));
   }, [date, timeZone]);
 
-  // Only include getTimeInTimeZone in the dependency array
   const currentTime = useMemo(() => getTimeInTimeZone(), [getTimeInTimeZone]);
   const seconds = currentTime.getSeconds();
   const minutes = currentTime.getMinutes();
