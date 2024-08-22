@@ -49,9 +49,9 @@
   background-color: #09a716;
   opacity: 0.8;
 }
-#submitButton:hover{
+#submitButton:hover {
   opacity: 1;
   height: 33px;
   width: 80px;
-  box-shadow:0 3px 6px ;
+  box-shadow: 0 3px 6px;
 }

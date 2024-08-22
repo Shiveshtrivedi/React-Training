@@ -16,7 +16,7 @@ const Header: React.FC<IHeaderProps> = ({ isSignedIn, signOut }) => {
               </Link>
             </li>
             <li>
-              <Link to="/about/:aboutid" className="linksInHeader">
+              <Link to="/about" className="linksInHeader">
                 About
               </Link>
             </li>

@@ -1,49 +1,48 @@
 .clockContainer {
-    height: 800px;
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .timezoneHeading {
-    padding: 9px 0 0 75px;
-  }
-  
+  height: 800px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.timezoneHeading {
+  padding: 9px 0 0 75px;
+}
+
+.timezoneClock {
+  position: absolute;
+  left: 35%;
+  height: 476px;
+  width: 209px;
+  padding: 15px 70px 1px 57px;
+  border: 1px solid #000000;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px;
+}
+.timezoneClock.dark {
+  background-color: #706a6a;
+  color: #ffffff;
+  z-index: 1;
+}
+.timezoneClock.light {
+  background-color: #ffffff;
+  color: #000;
+  z-index: 1;
+}
+.dropdownContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  position: absolute;
+  left: 1%;
+  top: 2%;
+}
+
+@media (max-width: 480px) {
   .timezoneClock {
     position: absolute;
-    left: 35%;
-    height: 476px;
-    width: 209px;
-    padding: 15px 70px 1px 57px;
-    border: 1px solid #000000;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px;
+    left: 7%;
   }
-  .timezoneClock.dark {
-    background-color: #706a6a;
-    color: #ffffff;
-    z-index: 1;
-  }
-  .timezoneClock.light {
-    background-color: #ffffff;
-    color: #000;
-    z-index: 1;
-  }
-  .dropdownContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 2px;
-    position: absolute;
-    left: 1%;
-    top: 2%;
-  }
-  
-  @media (max-width: 480px) {
-    .timezoneClock {
-      position: absolute;
-      left: 7%;
-    }
-  }
-  
+}

@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { useCallback, useState, useEffect, useMemo } from 'react';
 import moment from 'moment-timezone';
 import './DigitalClock.css';
@@ -42,7 +39,7 @@ const DigitalClock: React.FC<IClockProps> = ({ timeZone }) => {
 
   const { hourResult, meridian, dateValue } = useMemo(
     () => getFormattedTime(),
-    [date, getFormattedTime]
+    [getFormattedTime]
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

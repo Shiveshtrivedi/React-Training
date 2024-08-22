@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Navigate } from 'react-router-dom';
 import { IProtectedProps } from '../Utils/Interface/Interface';
 

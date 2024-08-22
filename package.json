@@ -21,5 +21,11 @@
     "lint:fix": "eslint --fix world_clock_ts/src/**/*.{js,ts,tsx}",
     "format": "prettier --write world_clock_ts/src/**/*.{js,ts,tsx}",
     "prepare": "husky install"
-  }
+  },
+  "name": "react-training",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

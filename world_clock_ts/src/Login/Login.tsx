@@ -1,11 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { IPerson, ILoginProps } from '../Utils/Interface/Interface';
 
-const Login: React.FC<ILoginProps> = ({ signIn }) => {
+const Login: React.FC<ILoginProps> = ({ signIn }: ILoginProps) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -21,23 +19,37 @@ const Login: React.FC<ILoginProps> = ({ signIn }) => {
   }, []);
 
   const handleLogin = () => {
-    const user = userData.find(
-      (user) => user.username === username && user.password === password
+    if (userData.length === 0) {
+      setError('*No user data available');
+      return;
+    }
+
+    const user: IPerson | undefined = userData.find(
+      (user: IPerson) =>
+        user.username === username && user.password === password
     );
 
     if (user) {
       setError('');
+      setPassword('');
       signIn();
       navigate('/');
     } else {
-      setError('*Invalid username or password');
+      const usernameExists = userData.some(
+        (user: IPerson) => user.username === username
+      );
+      if (usernameExists) {
+        setError('*Incorrect password');
+      } else {
+        setError('*Invalid username');
+      }
     }
   };
 
   return (
     <form
       className="container"
-      onSubmit={(e) => {
+      onSubmit={(e: React.FormEvent) => {
         e.preventDefault();
         handleLogin();
       }}
@@ -48,7 +60,9 @@ const Login: React.FC<ILoginProps> = ({ signIn }) => {
           type="text"
           id="username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setUsername(e.target.value)
+          }
           required
           aria-label="Username"
         />
@@ -59,7 +73,9 @@ const Login: React.FC<ILoginProps> = ({ signIn }) => {
           type="password"
           id="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
           required
           aria-label="Password"
         />

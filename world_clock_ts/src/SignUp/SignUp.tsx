@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IPerson } from '../Utils/Interface/Interface';
@@ -15,32 +14,33 @@ const validateEmail = (email: string) => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email);
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function setErrors(arg: string) {
-  throw new Error('Function not implemented.');
-}
+
+const setErrors = (message: string) => {
+  alert(message);
+};
 
 const SignUp = () => {
-  const [name, setName] = useState('');
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [userData, setUserData] = useState<IPerson[]>([]);
   const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!name || !username || !password) {
-      alert('Please fill all the fields');
+      setErrors('Please fill all the fields');
       return;
     }
     if (!validateEmail(username)) {
       setErrors(message.emailError);
       return;
     }
-
     if (!validatePassword(password)) {
       setErrors(message.passwordError);
       return;
     }
+
     const newUser: IPerson = {
       id: userData.length + 1,
       name,
@@ -48,20 +48,20 @@ const SignUp = () => {
       password,
     };
     setUserData([...userData, newUser]);
-    const updatedUserData = [...userData, newUser];
-    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+    localStorage.setItem('userData', JSON.stringify([...userData, newUser]));
     setName('');
-    setUserName('');
+    setUsername('');
     setPassword('');
     navigate('/login', { replace: true });
   };
+
   return (
     <>
       <form className="container" onSubmit={handleSubmit}>
         <div className="nameContainer">
           <label htmlFor="name">Name:</label>
           <input
-            type="name"
+            type="text"
             id="name"
             onChange={(e) => setName(e.target.value)}
             aria-label="Name"
@@ -72,7 +72,7 @@ const SignUp = () => {
           <input
             type="email"
             id="username"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             aria-label="Username"
           />
         </div>
@@ -91,8 +91,9 @@ const SignUp = () => {
           </button>
         </div>
       </form>
-      {console.log('usedata ', userData)}
+      {console.log('userData ', userData)}
     </>
   );
 };
+
 export default SignUp;

@@ -1,5 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-
 import AnalogClock from '../AnalogClock/AnalogClock';
 import DigitalClock from '../DigitalClock/DigitalClock';
 import { useState, ChangeEvent, useEffect } from 'react';

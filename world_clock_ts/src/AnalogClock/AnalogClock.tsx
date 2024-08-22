@@ -1,18 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import './AnalogClock.css';
 import { IClockProps } from '../Utils/Interface/Interface';
 
 const AnalogClock: React.FC<IClockProps> = ({ timeZone }) => {
   const [date, setDate] = useState<Date>(new Date());
-
-  const options = useCallback(
-    () => ({ timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-    [timeZone]
-  );
 
   useEffect(() => {
     const updateDate = () => {
@@ -26,11 +17,12 @@ const AnalogClock: React.FC<IClockProps> = ({ timeZone }) => {
     return () => clearInterval(timerID);
   }, [timeZone]);
 
-  const getTimeInTimeZone = (): Date => {
+  const getTimeInTimeZone = useCallback((): Date => {
     return new Date(date.toLocaleString('en-US', { timeZone }));
-  };
+  }, [date, timeZone]);
 
-  const currentTime = useMemo(() => getTimeInTimeZone(), [date, timeZone]);
+  // Only include getTimeInTimeZone in the dependency array
+  const currentTime = useMemo(() => getTimeInTimeZone(), [getTimeInTimeZone]);
   const seconds = currentTime.getSeconds();
   const minutes = currentTime.getMinutes();
   const hours = currentTime.getHours();

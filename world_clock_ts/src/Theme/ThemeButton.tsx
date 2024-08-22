@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import useTheme from '../Contexts/Theme';
 import './ThemeButton.css';
 import { CiDark, CiLight } from 'react-icons/ci';

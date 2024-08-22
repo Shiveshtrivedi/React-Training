@@ -1,6 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-no-comment-textnodes */
-
 const About = () => {
   return (
     <div>
