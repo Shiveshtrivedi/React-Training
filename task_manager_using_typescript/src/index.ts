@@ -1,4 +1,4 @@
-import { IAllTasks, ITask } from './utils/interfaces';
+import { IAllTasks, ITask } from './utils/interfaces.js';
 import { fetchData, handleError } from './data_file.js';
 // import { FilterTypeValue, DateFormat } from './utils/enum.js';
 export enum FilterTypeValue {
