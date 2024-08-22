@@ -1,5 +1,6 @@
 import { IAllTasks, ITask } from '../src/interfaces';
 import { fetchData, handleError } from './data_file.js';
+import { FilterTypeValue, DateFormat } from './enum';
 
 const addTask = document.querySelector('.addTaskSymbol') as HTMLDivElement;
 const addTaskPopupOverlay = document.querySelector(
@@ -40,12 +41,6 @@ addTaskCloseButton.addEventListener('click', (): void => {
   addTaskPopupOverlay.style.display = 'none';
 });
 
-enum FilterTypeValue {
-  COMPLETED = 'completed',
-  INCOMPLETE = 'incomplete',
-  FAVORITE = 'favorite',
-  ALL = 'all',
-}
 const renderTasksBasedOnFilter = (filterType: string): void => {
   taskContainer.innerHTML = '';
 
@@ -98,10 +93,6 @@ const isDuplicateTaskName = (name: string): boolean => {
     (task: IAllTasks) => task.name.toLowerCase() === name.toLowerCase()
   );
 };
-enum DateFormat {
-  LONG = 'long',
-  SHORT = 'short',
-}
 
 const getDateOptions = (format: DateFormat): Intl.DateTimeFormatOptions => {
   switch (format) {
