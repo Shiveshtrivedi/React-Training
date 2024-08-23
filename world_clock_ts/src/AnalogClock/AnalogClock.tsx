@@ -44,12 +44,12 @@ const AnalogClock: React.FC<IClockProps> = ({ timeZone }) => {
     return Array.from({ length: 12 }, (_, i) => {
       const numberValue = i + 1;
       const angle = ((numberValue * 30 - 90) * Math.PI) / 180;
-      const x = 100 + 70 * Math.cos(angle);
-      const y = 100 + 70 * Math.sin(angle);
+      const xPosition = 100 + 70 * Math.cos(angle);
+      const yPosition = 100 + 70 * Math.sin(angle);
       return (
         <text
-          x={x}
-          y={y}
+          x={xPosition}
+          y={yPosition}
           className="number"
           key={numberValue}
           textAnchor="middle"
