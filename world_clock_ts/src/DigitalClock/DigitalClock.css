@@ -1,0 +1,54 @@
+.digitalClock {
+  position: relative;
+  bottom: 15%;
+  right: 2%;
+  margin: 0;
+  width: 186px;
+  height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 3px solid #f70e0e;
+  background-color: #f70e0e;
+  z-index: -1;
+}
+
+.digitalValues {
+  font-size: 30px;
+  color: #000000;
+  height: 40px;
+  margin: 0 auto;
+  width: 170px;
+  padding: 0 0 0 15px;
+  background-color: #ece917;
+  border: 2px solid #000000;
+  border-radius: 8px;
+}
+.noMeridianDigitalValue {
+  font-size: 30px;
+  color: #000000;
+  height: 40px;
+  margin: 0 auto;
+  width: 153px;
+  padding: 0px 1px 0 24px;
+  background-color: #ece917;
+  border: 2px solid #000000;
+  border-radius: 8px;
+}
+
+.dateValue {
+  color: #ece917;
+  margin: 10px 0;
+  padding-left: 54px;
+}
+
+.digitalClock input[type='radio'] {
+  display: block;
+  margin: 5px 0;
+}
+.meridianValue {
+  display: flex;
+  position: relative;
+
+  bottom: 0%;
+  left: 14%;
+}

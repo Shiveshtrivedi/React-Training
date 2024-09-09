@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 50%;
+  margin: 90px auto;
+  box-shadow: 0 4px 8px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+.inputContainer {
+  display: flex;
+  gap: 5px;
+  padding: 0 0 54px 0;
+  margin-left: 10px;
+  width: 50%;
+}
+.nameContainer {
+  display: flex;
+  gap: 5px;
+  padding: 0 0 54px 0;
+  margin-left: 55px;
+  width: 50%;
+}
+.passwordContainer {
+  display: flex;
+  gap: 5px;
+  width: 50%;
+  margin-left: 18px;
+}
+
+#username,
+#password,
+#name {
+  width: 64%;
+  height: 110%;
+  box-shadow: 0 4px 8px;
+  border-radius: 5px;
+}
+#submitButton {
+  border-radius: 5px;
+  border: none;
+  width: 75px;
+  height: 30px;
+  margin: 23px 0 0 166px;
+  color: #fefefe;
+  background-color: #09a716;
+  opacity: 0.8;
+}
+#submitButton:hover {
+  opacity: 1;
+  height: 33px;
+  width: 80px;
+  box-shadow: 0 3px 6px;
+}
