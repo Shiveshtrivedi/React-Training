@@ -1,6 +1,19 @@
 {
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "dev": "npm run build && node ./src/index.js",
+    "lint": "eslint world_clock_ts/src/**/*.{js,ts,tsx} && eslint ./task_manager_using_typescript/src/*.{js,ts,tsx}",
+    "lint:fix": "eslint --fix world_clock_ts/src/**/*.{js,ts,tsx} && eslint --fix ./task_manager_using_typescript/src/*.{js,ts,tsx}",
+    "format": "prettier --write world_clock_ts/src/**/*.{js,ts,tsx} && prettier --write .",
+    "prepare": "husky install"
+  },
   "dependencies": {
-    "husky": "^9.1.4",
+    "react-scripts": "5.0.1",
     "lint-staged": "^15.2.8",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^5.62.0",
@@ -8,24 +21,24 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
-    "typescript": "^4.9.5",
-    "react-scripts": "5.0.1"
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
-    "husky": "^9.1.4"
+    "husky": "^9.1.4",
+    "@eslint/js": "^9.9.0",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.2.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "lint": "eslint world_clock_ts/src/**/*.{js,ts,tsx}",
-    "lint:fix": "eslint --fix world_clock_ts/src/**/*.{js,ts,tsx}",
-    "format": "prettier --write world_clock_ts/src/**/*.{js,ts,tsx}",
-    "prepare": "husky install"
+  "lint-staged": {
+    "world_clock_ts/src/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "task_manager_using_typescript/src/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
-  "name": "react-training",
-  "version": "1.0.0",
-  "main": "index.js",
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
